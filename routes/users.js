@@ -6,9 +6,9 @@ const models = require('../models');
 var express = require('express');
 var router = express.Router();
 
-// 対象IDのユーザー情報を更新
+//対象IDのユーザー情報を更新
 router.get('/', (req, res, next) => {
-  models.User.findAll({
+  models.Users.findAll({
     order: [
       ['id', 'desc']
     ],
@@ -22,8 +22,8 @@ router.get('/', (req, res, next) => {
 });
 
 // 対象IDのユーザー情報を更新
-router.post('/create', (req, res) => {
-  models.User.create({
+router.get('/', (req, res) => {
+  models.Users.create({
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     email: req.body.email
@@ -34,7 +34,7 @@ router.post('/create', (req, res) => {
 
 // 対象IDのユーザー情報の削除
 router.get('/destroy/:id', (req, res) => {
-  models.User.destroy({
+  models.Users.destroy({
     where: {
       id: req.params.id
     }
