@@ -1,37 +1,37 @@
 extends layout
 
 block content
-head
-  title=title
-  link(rel='stylesheet' href='/stylesheets/style.css')
-  body
-    h1= title
-    form(action="/users/create" method="post" value="")
-      label(for="first_name") 名前(性)):
-      input(id="last_name" type="text" name="last_name" value="")
-      label(for="first_name") 名前(名):
-      input(id="first_name" type="text" name="firstname" value="")
-      label(for="mail") メールアドレス
-      input(id="mail" type="text" name="mail" value="")
+  head
+    title=title
+    link(rel='stylesheet' href='/stylesheets/style.css')
+    body
+      h1= title
+      form(action="/users/create" method="post")
+        label(for="last_name") 名前(姓)):
+        input(id="last_name" type="text" name="last_name" value="")
+        label(for="first_name") 名前(姓):
+        input(id="first_name" type="text" name="first_name" value="")
+        label(for="email") メールアドレス
+        input(id="email" type="text" name="email" value="")
+        input(type="submit" value="新規追加")
 
-  table
-    tr
-      th ID
-      th 名前(性)
-      th 名前(名)
-      th メールアドレス
-      th
-    
-    each user in users
+    table
       tr
-        form(action="/users/update/${user.id}" method="post")
-          td #{user.id}
-          td
-            input(type="text" name="last_name" value=user.last_name)
-          td
-            input(type="text" name="first_name" value=user.first_name)
-          td
-            input(type="text" name="email" value=user.email)
-          td
-            input(type="submit" value="更新")
-            a(href="/users/destroy/${user.id}")　削除
+        th ID
+        th 名前(姓)
+        th 名前(名)
+        th メールアドレス
+        th
+      each user in users
+        tr
+          form(action=`/users/update/${user.id}` method="post")
+            td #{user.id}
+            td
+              input(type="text" name="last_name" value=user.last_name)
+            td
+              input(type="text" name="first_name" value=user.first_name)
+            td
+              input(type="text" name="email" value=user.email)
+            td
+              input(type="submit" value="更新")
+              a(href=`/users/destroy/${user.id}`) 削除
